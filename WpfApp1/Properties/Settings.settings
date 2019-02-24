@@ -1,7 +1,24 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SendMail.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="MailServiceSMTP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">stmp.yandex.ru</Value>
+    </Setting>
+    <Setting Name="DefaultEmailRecepient" Type="System.String" Scope="User">
+      <Value Profile="(Default)">tyshkevich@belmetal.com</Value>
+    </Setting>
+    <Setting Name="SMTPPort" Type="System.UInt32" Scope="User">
+      <Value Profile="(Default)">465</Value>
+    </Setting>
+    <Setting Name="DefaultEmailSender" Type="System.String" Scope="User">
+      <Value Profile="(Default)">kml_metal@tut.by</Value>
+    </Setting>
+    <Setting Name="FolderToWatch" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\</Value>
+    </Setting>
+    <Setting Name="FilesToWatch" Type="System.String" Scope="User">
+      <Value Profile="(Default)">*.pdf</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

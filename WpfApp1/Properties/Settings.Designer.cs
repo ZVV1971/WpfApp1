@@ -13,13 +13,85 @@ namespace SendMail.Properties {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+    public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
         
         public static Settings Default {
             get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("stmp.yandex.ru")]
+        public string MailServiceSMTP {
+            get {
+                return ((string)(this["MailServiceSMTP"]));
+            }
+            set {
+                this["MailServiceSMTP"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("tyshkevich@belmetal.com")]
+        public string DefaultEmailRecepient {
+            get {
+                return ((string)(this["DefaultEmailRecepient"]));
+            }
+            set {
+                this["DefaultEmailRecepient"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("465")]
+        public uint SMTPPort {
+            get {
+                return ((uint)(this["SMTPPort"]));
+            }
+            set {
+                this["SMTPPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("kml_metal@tut.by")]
+        public string DefaultEmailSender {
+            get {
+                return ((string)(this["DefaultEmailSender"]));
+            }
+            set {
+                this["DefaultEmailSender"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("c:\\")]
+        public string FolderToWatch {
+            get {
+                return ((string)(this["FolderToWatch"]));
+            }
+            set {
+                this["FolderToWatch"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("*.pdf")]
+        public string FilesToWatch {
+            get {
+                return ((string)(this["FilesToWatch"]));
+            }
+            set {
+                this["FilesToWatch"] = value;
             }
         }
     }

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SendMail"
         mc:Ignorable="d"
-        Title="Введите e-mail и пароль" Height="170" Width="400">
+        Title="Введите e-mail и пароль" Height="170" Width="400"
+        Validation.Error="Window_Error">
     <Window.CommandBindings>
         <CommandBinding Command="Save" Executed="SaveCommand_Executed" CanExecute="SaveCommand_CanExecute"/>
     </Window.CommandBindings>
@@ -28,7 +29,7 @@
                 </local:WatermarkService.Watermark>
             </TextBox>
             <Label Content="Пароль для электронной почты отправителя:" Target="{Binding ElementName=pwdBox}"/>
-            <PasswordBox x:Name="pwdBox" TabIndex="1" Margin="3,0,3,0"/>
+            <PasswordBox x:Name="pwdBox" TabIndex="1" Margin="3,0,3,0" PasswordChanged="PwdBox_PasswordChanged"/>
         </StackPanel>
         <Button Content="OK" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" Command="Save"
                 VerticalAlignment="Center" IsCancel="False" IsDefault="True" x:Name="btnOK" TabIndex="2" Width="90"/>
