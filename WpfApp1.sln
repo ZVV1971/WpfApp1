@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendMail", "WpfApp1\SendMail.csproj", "{1922820F-AD84-42E8-AFAA-F261CC030810}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1922820F-AD84-42E8-AFAA-F261CC030810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1922820F-AD84-42E8-AFAA-F261CC030810}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1922820F-AD84-42E8-AFAA-F261CC030810}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1922820F-AD84-42E8-AFAA-F261CC030810}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		BuildVersion_DetectChanges = True
+		BuildVersion_UseGlobalSettings = True
+		BuildVersion_UpdateFileVersion = True
+		BuildVersion_UpdateAssemblyVersion = True
+		BuildVersion_StartDate = 2000/1/1
+		BuildVersion_BuildVersioningStyle = None.None.None.Increment
+		SolutionGuid = {11876872-A4ED-4F1E-A847-9D85378EBA2D}
+	EndGlobalSection
+EndGlobal

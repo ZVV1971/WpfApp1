@@ -1,0 +1,38 @@
+﻿<Window x:Class="SendMail.EmailPwd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SendMail"
+        mc:Ignorable="d"
+        Title="Введите e-mail и пароль" Height="170" Width="400">
+    <Window.CommandBindings>
+        <CommandBinding Command="Save" Executed="SaveCommand_Executed" CanExecute="SaveCommand_CanExecute"/>
+    </Window.CommandBindings>
+    <Grid x:Name="grdMain">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <Label Content="Адрес электронной почты получателя:" Target="{Binding ElementName=tbToEmail}"/>
+            <TextBox x:Name="tbToEmail" Text="{Binding Path=ToEmail, NotifyOnValidationError=True, Mode=TwoWay,
+                NotifyOnSourceUpdated=True, ValidatesOnExceptions=True, UpdateSourceTrigger=PropertyChanged}"
+                     Margin="3,0,3,0" TabIndex="0">
+                <local:WatermarkService.Watermark>
+                    <TextBlock Text="ivanov@googlemail.com"/>
+                </local:WatermarkService.Watermark>
+            </TextBox>
+            <Label Content="Пароль для электронной почты отправителя:" Target="{Binding ElementName=pwdBox}"/>
+            <PasswordBox x:Name="pwdBox" TabIndex="1" Margin="3,0,3,0"/>
+        </StackPanel>
+        <Button Content="OK" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="0" Command="Save"
+                VerticalAlignment="Center" IsCancel="False" IsDefault="True" x:Name="btnOK" TabIndex="2" Width="90"/>
+        <Button Content="Cancel" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" 
+                VerticalAlignment="Center" IsCancel="True" IsDefault="False" x:Name="btnCancels" TabIndex="3" Width="90"/>
+    </Grid>
+</Window>
