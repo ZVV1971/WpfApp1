@@ -3,15 +3,21 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:cm="clr-namespace:System.ComponentModel;assembly=System"
         xmlns:tb="http://www.hardcodet.net/taskbar"
         xmlns:local="clr-namespace:SendMail"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Visibility="Hidden" x:Name="wndMain">
+    <Window.Resources>
+        <cm:BackgroundWorker x:Key="bgWorker" DoWork="BackgroundWorker_DoWork"/>
+    </Window.Resources>
     <Grid>
         <tb:TaskbarIcon ToolTipText="Отправка файлов, помещенных в выбранный каталог на указанный адрес электронной почты" 
                         IconSource="Icon1.ico" x:Name="tbiMain">
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu Background="Transparent">
+                    <MenuItem x:Name="miStop" Click="MiStop_Click" Header="{Binding}"/>
+                    <Separator/>
                     <MenuItem x:Name="miClose" Click="Button_Click" Header="Закрыть"/>
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>

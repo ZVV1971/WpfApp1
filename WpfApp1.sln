@@ -20,12 +20,13 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		BuildVersion_DetectChanges = True
-		BuildVersion_UseGlobalSettings = True
-		BuildVersion_UpdateFileVersion = True
-		BuildVersion_UpdateAssemblyVersion = True
-		BuildVersion_StartDate = 2000/1/1
-		BuildVersion_BuildVersioningStyle = None.None.None.Increment
+		BuildVersion_ReplaceNonNumerics = False
 		SolutionGuid = {11876872-A4ED-4F1E-A847-9D85378EBA2D}
+		BuildVersion_BuildVersioningStyle = None.None.None.Increment
+		BuildVersion_StartDate = 2000/1/1
+		BuildVersion_UpdateAssemblyVersion = True
+		BuildVersion_UpdateFileVersion = True
+		BuildVersion_UseGlobalSettings = False
+		BuildVersion_DetectChanges = True
 	EndGlobalSection
 EndGlobal
