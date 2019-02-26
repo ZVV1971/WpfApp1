@@ -81,7 +81,7 @@ namespace SendMail
             };
 
             //MimePart attachment
-            byte[] arr;
+            byte[] arr = new byte[] { 0 };
             while (true)
             {
                 int i = 0;
@@ -90,11 +90,37 @@ namespace SendMail
                     arr = File.ReadAllBytes(e.FullPath);
                     break;
                 }
+                catch (FileNotFoundException)
+                {
+                    break;
+                }
                 catch (IOException)
                 {
                     Thread.Sleep(1000 * (++i));
                 }
+                catch (Exception)
+                {
+                    break;
+                }
             }
+            
+            MemoryStream mstr = new MemoryStream(arr);
+            MimePart attachment = new MimePart("application", "pdf")
+            {
+                Content = new MimeContent(mstr, ContentEncoding.Default),
+                ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
+                ContentTransferEncoding = ContentEncoding.Base64,
+                FileName = e.Name
+            };
+            var multipart = new Multipart("mixed");
+            multipart.Add(body);
+            multipart.Add(attachment);
+
+            // now set the multipart/mixed as the message body
+            message.Body = multipart;
+
+            SendMessage(message, Encoding.UTF8.GetString(ProtectedData.Unprotect(pwd, entropy, DataProtectionScope.CurrentUser)));
+
             //can be done afterwards
             new Thread((x) =>
             {
@@ -117,23 +143,6 @@ namespace SendMail
                     }
                 }
             }).Start(e.FullPath);
-
-            MemoryStream mstr = new MemoryStream(arr);
-            MimePart attachment = new MimePart("application", "pdf")
-            {
-                Content = new MimeContent(mstr, ContentEncoding.Default),
-                ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
-                ContentTransferEncoding = ContentEncoding.Base64,
-                FileName = e.Name
-            };
-            var multipart = new Multipart("mixed");
-            multipart.Add(body);
-            multipart.Add(attachment);
-
-            // now set the multipart/mixed as the message body
-            message.Body = multipart;
-
-            SendMessage(message, Encoding.UTF8.GetString(ProtectedData.Unprotect(pwd, entropy, DataProtectionScope.CurrentUser)));
         }
 
         private void SendMessage(MimeMessage message, string pwd)
@@ -141,9 +150,20 @@ namespace SendMail
             using (var client = new SmtpClient(new ProtocolLogger(Path.Combine(WatchPath, "smtp.log"))))
             {
                 client.Connect("smtp.yandex.ru", 465, SecureSocketOptions.SslOnConnect);
-                client.Authenticate(Properties.Settings.Default.DefaultEmailSender, pwd);
-                client.Send(message);
-                client.Disconnect(true);
+                try
+                {
+                    client.Authenticate(Properties.Settings.Default.DefaultEmailSender, pwd);
+                    client.Send(message);
+                }
+                catch (AuthenticationException)
+                {
+                    MessageBox.Show("Wrong credentials!", "Error", MessageBoxButton.OK,
+                        MessageBoxImage.Error, MessageBoxResult.OK);
+                }
+                finally
+                {
+                    client.Disconnect(true);
+                }
             }
         }
 
