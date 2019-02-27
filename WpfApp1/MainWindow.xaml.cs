@@ -84,6 +84,7 @@ namespace SendMail
             byte[] arr = new byte[] { 0 };
             while (true)
             {
+                Thread.Sleep(500);
                 int i = 0;
                 try
                 {
@@ -92,7 +93,7 @@ namespace SendMail
                 }
                 catch (FileNotFoundException)
                 {
-                    break;
+                    return;
                 }
                 catch (IOException)
                 {
@@ -133,7 +134,8 @@ namespace SendMail
                     }
                     catch (IOException)
                     {
-                        Thread.Sleep(5000);
+                        new System.Timers.Timer(500).Start();
+                        //Thread.Sleep(5000);
                     }
                     catch (Exception)
                     {
