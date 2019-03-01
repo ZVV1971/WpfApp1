@@ -80,12 +80,21 @@ namespace SendMail
                 Text = "Документы от Частного предприятия \"КМЛ\"",
             };
 
+            //needed to create Mutex just because when PDF is created through
+            //printing to file and then is opened for viewing, then the event
+            //is fired twice
+            bool isMutexCreated;
+            Mutex mutex = new Mutex(false, e.FullPath.Replace('\\', '_'),
+                                    out isMutexCreated);
+            if (!isMutexCreated) return;
+
             //MimePart attachment
             byte[] arr = new byte[] { 0 };
-            while (true)
+            int i = 0;
+            System.Timers.Timer timer = new System.Timers.Timer(500);
+            while (i <= 450)
             {
                 Thread.Sleep(500);
-                int i = 0;
                 try
                 {
                     arr = File.ReadAllBytes(e.FullPath);
@@ -97,7 +106,8 @@ namespace SendMail
                 }
                 catch (IOException)
                 {
-                    Thread.Sleep(1000 * (++i));
+                    timer.Interval += 1000 * ++i;
+                    timer.Start();
                 }
                 catch (Exception)
                 {
@@ -125,6 +135,7 @@ namespace SendMail
             //can be done afterwards
             new Thread((x) =>
             {
+                System.Timers.Timer tmr = new System.Timers.Timer(500);
                 while (true)
                 {
                     try
@@ -134,8 +145,7 @@ namespace SendMail
                     }
                     catch (IOException)
                     {
-                        new System.Timers.Timer(500).Start();
-                        //Thread.Sleep(5000);
+                        tmr.Start();
                     }
                     catch (Exception)
                     {
@@ -145,6 +155,9 @@ namespace SendMail
                     }
                 }
             }).Start(e.FullPath);
+
+            try { mutex.ReleaseMutex(); }
+            catch { }
         }
 
         private void SendMessage(MimeMessage message, string pwd)
